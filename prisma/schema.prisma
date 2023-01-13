@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
+model Inquery {
   id Int @id @default(autoincrement())
   name String @db.VarChar(50)
   sex Int 
