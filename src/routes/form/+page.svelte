@@ -1,31 +1,54 @@
 <script lang="ts">
+	import {
+		name,
+		sex,
+		date_of_birth,
+		postal_code,
+		address,
+		tel,
+		email,
+		inquery_type,
+		inquery_body
+	} from '$lib/store/formstore';
 	import Input from '../components/form/Input.svelte';
 	import Select from '../components/form/Select.svelte';
 	import Option from '../components/form/Option.svelte';
 	import RadioField from '../components/form/RadioField.svelte';
 	import Textarea from '../components/form/Textarea.svelte';
-
-	let name: string = 'Daiki';
-	let sex: string = '1';
-	let date_of_birth: string = '1997-12-10';
-	let postal_code: string = '123-4567';
-	let address: string = 'Tokyo';
-	let tel: string | null;
-	let email: string | null;
-	let inquery_type: string = '1';
-	let inquery_body: string = '色々困ってます。';
+	import { goto } from '$app/navigation';
+	import { SexList, InqueryTypes } from '$lib/constant';
 
 	const postalCodePattern = '^\\d{3}-?\\d{4}$';
 	const telPattern = '^0[-\\d]{9,12}$';
+
+	function onSubmit() {
+		goto('/form/confirmation');
+	}
 </script>
 
-<form id="form" method="post" autocomplete="on" class="max-w-screen-md gap-4 mx-auto">
+<form
+	id="form"
+	method="post"
+	on:submit|preventDefault={onSubmit}
+	autocomplete="on"
+	novalidate
+	class="max-w-screen-md gap-4 mx-auto"
+>
 	<!-- 名前（必須）-->
-	<Input label="名前" name="name" id="name" type="text" autocomplete="name" required />
+	<Input
+		label="名前"
+		name="name"
+		id="name"
+		type="text"
+		autocomplete="name"
+		required
+		bind:value={$name}
+	/>
 	<!-- 性別（選択式・必須）-->
 	<RadioField
 		name="sex"
 		label="性別"
+		bind:checked={$sex}
 		inputDataArray={[
 			{ id: 'male', value: '1', label: '男性' },
 			{ id: 'female', value: '2', label: '女性' },
@@ -40,6 +63,7 @@
 		type="date"
 		required
 		autocomplete="bday"
+		bind:value={$date_of_birth}
 	/>
 	<!-- 郵便番号（必須） -->
 	<Input
@@ -50,10 +74,19 @@
 		required
 		pattern={postalCodePattern}
 		autocomplete="postal-code"
+		bind:value={$postal_code}
 	/>
 
 	<!-- 住所（必須・200文字以内） -->
-	<Input type="text" label="住所" id="address" name="address" required maxlength={200} />
+	<Input
+		type="text"
+		label="住所"
+		id="address"
+		name="address"
+		required
+		maxlength={200}
+		bind:value={$address}
+	/>
 	<!-- 電話番号（任意） -->
 	<Input
 		type="tel"
@@ -62,6 +95,7 @@
 		id="tel"
 		pattern={telPattern}
 		autocomplete="tel-national"
+		bind:value={$tel}
 	/>
 	<!-- メールアドレス(任意・200文字以内) -->
 	<Input
@@ -71,14 +105,20 @@
 		id="email"
 		maxlength={200}
 		autocomplete="email"
+		bind:value={$email}
 	/>
 	<!-- 問い合わせの種類(選択式・必須) -->
-	<Select id="inquery-type" name="inquery-type" label="お問い合わせの種類" required>
+	<Select
+		id="inquery-type"
+		name="inquery-type"
+		label="お問い合わせの種類"
+		bind:value={$inquery_type}
+		required
+	>
 		<Option label="未選択" value="" />
-		<Option label="ホームページに関して" value="1" />
-		<Option label="製品に関して" value="2" />
-		<Option label="会社に関して" value="3" />
-		<Option label="その他" value="4" />
+		{#each InqueryTypes as type}
+			<Option label={type.name} value={String(type.id)} />
+		{/each}
 	</Select>
 	<!-- 相談内容(必須・1000文字以内) -->
 	<Textarea
@@ -89,6 +129,7 @@
 		cols={50}
 		maxlength={1000}
 		placeholder="お問い合わせ内容を入力してください"
+		bind:value={$inquery_body}
 		required
 	/>
 	<button

@@ -11,15 +11,15 @@ type InqueryRequest = {
 export async function POST({ request }: InqueryRequest) {
 	const data = await request.json();
 
-	const name = String(data.name);
-	const sex = Number(data.sex);
-	const date_of_birth = String(data.date_of_birth);
-	const postal_code = String(data.postal_code);
-	const address = String(data.address);
+	const name = data.name ? String(data.name) : '';
+	const sex = data.sex ? Number(data.sex) : 0;
+	const date_of_birth = data.date_of_birth ? String(data.date_of_birth) : '';
+	const postal_code = data.postal_code ? String(data.postal_code) : '';
+	const address = data.address ? String(data.address) : '';
 	const tel = data.tel ? String(data.tel) : null;
 	const email = data.email ? String(data.email) : null;
-	const inquery_type = String(data.inquery_type);
-	const inquery_body = String(data.inquery_body);
+	const inquery_type = data.inquery_type ? String(data.inquery_type) : '';
+	const inquery_body = data.inquery_body ? String(data.inquery_body) : '';
 
 	const requestData: db.Inquery = {
 		name: name,
@@ -34,7 +34,6 @@ export async function POST({ request }: InqueryRequest) {
 	};
 
 	const validationErrorMessages = validateInquery(requestData);
-	console.log(validationErrorMessages);
 	if (validationErrorMessages.length > 0) {
 		const errorMessage = JSON.stringify(validationErrorMessages);
 		throw error(422, errorMessage);

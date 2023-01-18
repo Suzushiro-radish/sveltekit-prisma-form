@@ -18,10 +18,9 @@ export async function insertRecord(data: Inquery) {
 	if (data.postal_code) {
 		data.postal_code = data.postal_code.replace('-', '');
 	}
-	const inquery = await prisma.inquery.create({
+	await prisma.inquery.create({
 		data: data
 	});
-	console.log(inquery);
 }
 
 export async function getAllRecords() {

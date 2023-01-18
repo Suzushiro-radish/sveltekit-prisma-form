@@ -8,6 +8,7 @@
 	export let inputDataArray: Array<RadioInputData>;
 	export let label: string;
 	export let name: string;
+	export let checked: string;
 	export let required: boolean = false;
 </script>
 
@@ -20,6 +21,7 @@
 					{name}
 					id={inputData.id}
 					{required}
+					bind:group={checked}
 					value={inputData.value}
 					label={inputData.label}
 				/>

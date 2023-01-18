@@ -4,6 +4,7 @@
 	export let name: string;
 	export let required: boolean = false;
 	export let value: string;
+	export let group: string;
 </script>
 
 <div class="flex items-center">
@@ -12,6 +13,7 @@
 		{name}
 		{id}
 		{required}
+		bind:group
 		{value}
 		class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
 	/>
