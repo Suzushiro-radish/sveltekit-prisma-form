@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<nav class="bg-indigo-500">
-		<a href="/form" class="bg-indigo-700 text-white px-3 py-2 text-sm font-medium">お問い合わせ</a>
+		<a href="/" class="bg-indigo-700 text-white px-3 py-2 text-sm font-medium">お問い合わせ</a>
 		<a href="/inquery" class="bg-indigo-700 text-white px-3 py-2 text-sm font-medium"
 			>お問い合わせ一覧</a
 		>

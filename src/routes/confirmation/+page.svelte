@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Li from '../components/confirm/Li.svelte';
+	import Li from './components/Li.svelte';
 	import {
 		name,
 		sex,
@@ -18,6 +18,10 @@
 		id: 0,
 		name: '未選択'
 	};
+
+	function correctInput() {
+		goto('/');
+	}
 
 	async function postData() {
 		const data = {
@@ -73,5 +77,6 @@
 		<Li text={inqueryType.name} label="お問い合わせの種類" />
 		<Li text={$inquery_body} label="お問い合わせ内容" />
 	</dl>
-	<button type="button" on:click={postData}> Register Fetch! </button>
+	<button type="button" on:click={correctInput}>修正</button>
+	<button type="button" on:click={postData}>送信</button>
 </div>

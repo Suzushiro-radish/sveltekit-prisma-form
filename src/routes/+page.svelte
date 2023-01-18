@@ -10,13 +10,13 @@
 		inquery_type,
 		inquery_body
 	} from '$lib/store/formstore';
-	import Input from './components/form/Input.svelte';
-	import Select from './components/form/Select.svelte';
-	import Option from './components/form/Option.svelte';
-	import RadioField from './components/form/RadioField.svelte';
-	import Textarea from './components/form/Textarea.svelte';
+	import Input from './components/Input.svelte';
+	import Select from './components/Select.svelte';
+	import Option from './components/Option.svelte';
+	import RadioField from './components/RadioField.svelte';
+	import Textarea from './components/Textarea.svelte';
 	import { goto } from '$app/navigation';
-	import { SexList, InqueryTypes } from '$lib/constant';
+	import { InqueryTypes } from '$lib/constant';
 
 	const postalCodePattern = '^\\d{3}-?\\d{4}$';
 	const telPattern = '^0[-\\d]{9,12}$';
@@ -31,7 +31,6 @@
 	method="post"
 	on:submit|preventDefault={onSubmit}
 	autocomplete="on"
-	novalidate
 	class="max-w-screen-md gap-4 mx-auto"
 >
 	<!-- 名前（必須）-->
