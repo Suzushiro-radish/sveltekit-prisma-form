@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Li from '../../components/confirm/Li.svelte';
+	import Li from '../components/confirm/Li.svelte';
 	import {
 		name,
 		sex,
@@ -37,7 +37,7 @@
 			body: JSON.stringify(data)
 		});
 		if (res.ok) {
-			goto('./completed');
+			goto('/completed');
 		} else if (res.status === 422) {
 			const jsonRes = await res.json();
 			const messages = JSON.parse(jsonRes.message);
