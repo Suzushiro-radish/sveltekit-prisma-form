@@ -1,18 +1,28 @@
 <script lang="ts">
 	export let type: string;
 	export let label: string;
+	export let patternLabel: string | null = null;
 	export let id: string;
 	export let name: string;
 	export let required: boolean = false;
 	export let maxlength: number | null = null;
 	export let minlength: number | null = null;
+	export let max: string | number | null = null;
 	export let pattern: string | null = null;
 	export let autocomplete: string | null = null;
 	export let value: string | null = null;
 </script>
 
 <div class="py-3">
-	<label for={id} class="inline-block text-gray-800 text-sm sm:text-base mb-2">{label}</label>
+	{#if required}
+		<span class="text-red-500">*</span>
+	{/if}
+	<label for={id} class="inline-block text-gray-800 text-medium mb-2">
+		{label}
+		{#if patternLabel}
+			<span class="text-pink-500 font-light text-sm">{patternLabel}</span>
+		{/if}
+	</label>
 	{#if type === 'text'}
 		<input
 			type="text"
@@ -35,6 +45,7 @@
 			{maxlength}
 			{pattern}
 			{required}
+			{max}
 			{autocomplete}
 			bind:value
 			class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"

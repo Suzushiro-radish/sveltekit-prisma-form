@@ -7,6 +7,9 @@
 </script>
 
 <div class="py-3">
+	{#if required}
+		<span class="text-red-500">*</span>
+	{/if}
 	<label for={id} class="inline-block text-gray-800 text-sm sm:text-base mb-2">{label}</label>
 	<select
 		{name}

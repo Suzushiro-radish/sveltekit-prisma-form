@@ -2,7 +2,11 @@
 module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				'm-plus': ['M PLUS Rounded 1c']
+			}
+		}
 	},
 	plugins: []
 };

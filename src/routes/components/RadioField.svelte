@@ -14,7 +14,12 @@
 
 <div class="py-3">
 	<fieldset id="sex">
-		<legend class="inline-block text-gray-800 text-sm sm:text-base mb-2">{label}</legend>
+		<legend class="inline-block text-gray-800 text-sm sm:text-base mb-2">
+			{#if required}
+				<span class="text-red-500">*</span>
+			{/if}
+			{label}
+		</legend>
 		<div class="mt-4 space-y-4">
 			{#each inputDataArray as inputData}
 				<RadioInput

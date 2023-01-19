@@ -77,6 +77,18 @@
 		<Li text={inqueryType.name} label="お問い合わせの種類" />
 		<Li text={$inquery_body} label="お問い合わせ内容" />
 	</dl>
-	<button type="button" on:click={correctInput}>修正</button>
-	<button type="button" on:click={postData}>送信</button>
+	<button
+		type="button"
+		on:click={correctInput}
+		class="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
+	>
+		修正
+	</button>
+	<button
+		type="button"
+		on:click={postData}
+		class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
+	>
+		送信
+	</button>
 </div>

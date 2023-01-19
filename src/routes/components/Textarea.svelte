@@ -2,6 +2,7 @@
 	export let name: string;
 	export let id: string;
 	export let label: string;
+	export let patternLabel: string | null = null;
 	export let required: boolean = false;
 	export let cols: number | null = null;
 	export let rows: number | null = null;
@@ -11,8 +12,14 @@
 </script>
 
 <div class="py-3">
+	{#if required}
+		<span class="text-red-500">*</span>
+	{/if}
 	<label for={id} class="inline-block text-gray-800 text-sm sm:text-base mb-2">
 		{label}
+		{#if patternLabel}
+			<span>{patternLabel}</span>
+		{/if}
 	</label>
 	<textarea
 		{name}
