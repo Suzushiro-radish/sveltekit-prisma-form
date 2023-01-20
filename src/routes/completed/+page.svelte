@@ -1,13 +1,9 @@
-<script lang="ts">
-</script>
-
-<div class="bg-gray-50">
-	<div
-		class="mx-auto max-w-7xl py-12 px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8"
-	>
-		<h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-			<p class="block">お問い合わせが完了しました</p>
-			<div class="block text-indigo-600">お問い合わせありがとうございました</div>
-		</h2>
+<div class="container max-w-screen-md gap-4 mx-auto font-m-plus ">
+	<div class="bg-white p-5 rounded-xl">
+		<div class="flex flex-col justify-center m-10">
+			<h2 class="text-center text-3xl text-gray-700">送信完了しました</h2>
+			<hr class="h-0.5 w-2/3 bg-pink-300 mx-auto my-5" />
+			<div class="text-center text-gray-500 text-xl">お問い合わせありがとうございました</div>
+		</div>
 	</div>
 </div>

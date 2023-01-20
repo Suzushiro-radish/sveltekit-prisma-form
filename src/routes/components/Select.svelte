@@ -6,11 +6,11 @@
 	export let value: string;
 </script>
 
-<div class="py-3">
+<div class="py-3 font-m-plus text-xl">
 	{#if required}
 		<span class="text-red-500">*</span>
 	{/if}
-	<label for={id} class="inline-block text-gray-800 text-sm sm:text-base mb-2">{label}</label>
+	<label for={id} class="inline-block text-gray-800 mb-1">{label}</label>
 	<select
 		{name}
 		{id}

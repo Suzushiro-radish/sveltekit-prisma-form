@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				'm-plus': ['M PLUS Rounded 1c']
+				'm-plus': ['"M PLUS Rounded 1c"']
 			}
 		}
 	},

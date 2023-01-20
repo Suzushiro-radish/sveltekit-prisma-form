@@ -15,7 +15,7 @@
 		{required}
 		bind:group
 		{value}
-		class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+		class="h-5 w-5 ml-3 mr-1 accent-pink-500"
 	/>
-	<label for={id} class="ml-3 block text-sm font-medium text-gray-700">{label}</label>
+	<label for={id} class="block text-m font-m-plus text-gray-700">{label}</label>
 </div>

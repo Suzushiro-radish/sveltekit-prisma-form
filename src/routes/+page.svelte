@@ -29,16 +29,17 @@
 	}
 
 	function onSubmit() {
+		console.log('Hello');
 		goto('/confirmation');
 	}
 </script>
 
-<div class="container max-w-screen-md gap-4 mx-auto">
-	<div class="text-left text-3xl font-bold">入力フォーム</div>
-	<hr class="bg-yellow-300 h-2 my-5 border-yellow-300" />
+<div class="container max-w-screen-md gap-4 mx-auto font-m-plus">
+	<div class="text-left text-3xl font-m-plus mx-5">入力フォーム</div>
+	<hr class="bg-pink-500 h-1 mb-5 mt-1 mx-3" />
 	<div class="bg-white p-5 rounded-xl">
 		<div class="text-black"><span class="text-red-500">*</span>がついているものは必須項目です</div>
-		<form id="form" method="post" on:submit|preventDefault={onSubmit} autocomplete="on">
+		<form id="form" method="post" on:submit|preventDefault={onSubmit}>
 			<!-- 名前（必須・50字以内）-->
 			<Input
 				label="名前"
@@ -48,6 +49,7 @@
 				type="text"
 				autocomplete="name"
 				required
+				placeholder="例) 山田 太郎"
 				maxlength={50}
 				bind:value={$name}
 			/>
@@ -84,6 +86,7 @@
 				patternLabel="半角数字とハイフン(-)のみで入力してください"
 				pattern={postalCodePattern}
 				autocomplete="postal-code"
+				placeholder="例) 000-0000"
 				bind:value={$postal_code}
 			/>
 
@@ -107,6 +110,7 @@
 				id="tel"
 				pattern={telPattern}
 				autocomplete="tel-national"
+				placeholder="例) 000-0000-0000"
 				bind:value={$tel}
 			/>
 			<!-- メールアドレス(任意・200文字以内) -->
@@ -117,6 +121,7 @@
 				id="email"
 				maxlength={200}
 				autocomplete="email"
+				placeholder="例) example@example.com"
 				bind:value={$email}
 			/>
 			<!-- 問い合わせの種類(選択式・必須) -->
@@ -145,10 +150,10 @@
 				bind:value={$inquery_body}
 				required
 			/>
-			<div>
+			<div class="flex flex-row-reverse">
 				<button
 					type="submit"
-					class="sm:col-span-2 inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+					class="bg-pink-500 hover:bg-pink-600 active:bg-pink-700 focus-visible:ring ring-indigo-300 text-white text-xl text-center rounded-lg outline-none transition duration-100 px-8 py-3 mr-10"
 				>
 					確認
 				</button>

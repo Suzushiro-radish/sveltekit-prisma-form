@@ -9,7 +9,7 @@
 <body>
 	<h1>お問い合わせ一覧</h1>
 
-	<table>
+	<table class="table-auto">
 		<thead>
 			<th>id</th>
 			<th>name</th>

@@ -1,12 +1,22 @@
-import type { Inquery } from './database';
+export type InqueryRequest = {
+	name: string;
+	sex: string;
+	date_of_birth: string;
+	postal_code: string;
+	address: string;
+	tel: string | null;
+	email: string | null;
+	inquery_type: string;
+	inquery_body: string;
+};
 
-export function validateInquery(request: Inquery): Array<string> {
-	const messages: Array<string> = [];
+export function validateInquery(request: InqueryRequest): Array<string> {
+	const messages: string[] = [];
 
 	if (!isValid(request.name, { type: 'string', required: true, max_length: 50 })) {
 		messages.push('名前が正しい形式ではありません');
 	}
-	if (!isValid(request.sex, { type: 'number', required: true })) {
+	if (!isValid(request.sex, { type: 'number', required: true, pattern: /^[129]$/ })) {
 		messages.push('性別が正しい形式ではありません');
 	}
 	if (
@@ -53,11 +63,11 @@ type ValidationRule = {
 	pattern?: RegExp;
 };
 
-function isValid(value: string | number | null, rule: ValidationRule): boolean {
+function isValid(value: string | null, rule: ValidationRule): boolean {
 	// required
-	if (!rule.required && (value === '' || value === 0 || value === null)) {
+	if (!rule.required && (value === '' || value === null)) {
 		return true;
-	} else if (rule.required && (value === '' || value === 0 || value === null)) {
+	} else if (rule.required && (value === '' || value === null)) {
 		return false;
 	}
 	// type
@@ -67,7 +77,7 @@ function isValid(value: string | number | null, rule: ValidationRule): boolean {
 			break;
 		}
 		case 'number': {
-			if (typeof value !== 'number') return false;
+			if (isNaN(Number(value))) return false;
 			break;
 		}
 		case 'email': {
