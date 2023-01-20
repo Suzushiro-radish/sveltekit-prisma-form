@@ -1,22 +1,49 @@
-# create-svelte
+# Form-App built with SvelteKit and Prisma
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+SvelteKit と Prisma でフォームを作成しました。
+CSS は Tailwind CSS を使用しました。
 
-## Creating a project
+## About this app
 
-If you're seeing this, you've probably already done this step. Congrats!
+- 取り掛かろうとしたタイミングで SvelteKit の 1.0 が出たので、それを使用してみました。
+- Prisma は正直必要ないですが、配布時に DB の差分を吸収するために使用しています。
+- お問い合わせ一覧は開発の都合で作ったページですが、一応残してあります。
+- 星のカービィというゲームにハマっているため、影響された配色になってしまいました。
+
+## How to deploy
+
+### Clone
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+git clone https://github.com/Suzushiro-radish/sveltekit-prisma-form.git
+cd sveltekit-prisma-form
+npm install
 ```
 
-## Developing
+### Setting database
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Docker で PostgreSQL を使う場合は
+
+```bash
+docker-compose up -d
+```
+
+自前の DB を使う場合は.env ファイルの内容を Prisma の公式ドキュメント(https://www.prisma.io/docs/concepts/database-connectors)に従って設定してください。
+(.env ファイルも push してあるので、そのままで問題ないです。)
+
+> docker-compose.yml ではマウントの設定はしてありません。
+
+### Create table
+
+Prisma を使用して Migration を行います。
+
+```bash
+npx prisma migrate dev
+```
+
+### Develop
+
+以下のどちらかのコマンドを実行
 
 ```bash
 npm run dev
@@ -25,14 +52,4 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+port:5173 でアプリが立ち上がります。

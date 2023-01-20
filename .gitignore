@@ -3,7 +3,8 @@ node_modules
 /build
 /.svelte-kit
 /package
-.env
+migrations/
+!migrations/migration_lock.toml
 .env.*
 !.env.example
 vite.config.js.timestamp-*
