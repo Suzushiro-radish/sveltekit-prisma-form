@@ -9,3 +9,17 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Inquery {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  sex Int 
+  date_of_birth String
+  postal_code String @db.Char(7)
+  address String @db.VarChar(200)
+  tel String? @db.VarChar(20)
+  email String? @db.VarChar(200)
+  inquery_type String
+  inquery_body String @db.VarChar(1000)
+  createdAt DateTime @default(now())
+}
