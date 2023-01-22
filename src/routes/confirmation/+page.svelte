@@ -9,10 +9,13 @@
 		tel,
 		email,
 		inquery_type,
-		inquery_body
+		inquery_body,
+		isFilled
 	} from '$lib/store/formstore';
 	import { InqueryTypes } from '$lib/constant';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { redirect } from '@sveltejs/kit';
 
 	let isSending: boolean = false;
 
@@ -20,6 +23,15 @@
 		id: 0,
 		name: '未選択'
 	};
+
+	const DoB = new Date($date_of_birth);
+	const formattedDoB = `${DoB.getFullYear()}年 ${DoB.getMonth() + 1}月 ${DoB.getDate()}日`;
+
+	onMount(() => {
+		if (!$isFilled) {
+			goto('/');
+		}
+	});
 
 	function correctInput() {
 		goto('/');
@@ -44,6 +56,7 @@
 			method: 'POST',
 			body: JSON.stringify(data)
 		});
+
 		if (res.ok) {
 			goto('/completed');
 		} else if (res.status === 422) {
@@ -75,7 +88,7 @@
 				{:else}
 					<Li text="その他" label="性別" />
 				{/if}
-				<Li text={$date_of_birth} label="生年月日" />
+				<Li text={formattedDoB} label="生年月日" />
 				<Li text={$postal_code} label="郵便番号" />
 				<Li text={$address} label="住所" />
 				{#if $tel}

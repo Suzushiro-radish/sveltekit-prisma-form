@@ -8,7 +8,8 @@
 		tel,
 		email,
 		inquery_type,
-		inquery_body
+		inquery_body,
+		isFilled
 	} from '$lib/store/formstore';
 	import Input from './components/Input.svelte';
 	import Select from './components/Select.svelte';
@@ -29,7 +30,7 @@
 	}
 
 	function onSubmit() {
-		console.log('Hello');
+		isFilled.set(true);
 		goto('/confirmation');
 	}
 </script>
